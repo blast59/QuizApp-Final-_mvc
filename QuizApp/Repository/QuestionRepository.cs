@@ -6,17 +6,17 @@ using System.Linq.Expressions;
 
 namespace QuizApp.Repository
 {
-    public class QuizRepository : Repository<Quiz> , IQuizRepository 
+    public class QuestionRepository : Repository<Question> , IQuestionRepository
     {
         private AppDbContext _db;
 
-        public QuizRepository(AppDbContext db) : base(db) 
+        public QuestionRepository(AppDbContext db) : base(db) 
         {
             _db = db;
         }
-        public void Update(Quiz obj)
+        public void Update(Question obj)
         {
-            _db.Quiz.Update(obj);
+            _db.Question.Update(obj);
         }
     }
 }

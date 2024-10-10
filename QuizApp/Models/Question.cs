@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Reflection.Metadata.Ecma335;
 
 namespace QuizApp.Models
@@ -11,12 +12,16 @@ namespace QuizApp.Models
         [Required]
         public string QuestionText { get; set; }
         [Required]
+        [DisplayName("A")]
         public string OptionA { get; set; }
         [Required]
+        [DisplayName("B")]
         public string OptionB { get; set; }
         [Required]
+        [DisplayName("C")]
         public string OptionC { get; set; }
         [Required]
+        [DisplayName("D")]
         public string OptionD { get; set; }
         [Required]
         public string CorrectOption { get; set; }

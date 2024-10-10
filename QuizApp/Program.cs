@@ -7,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Registering DbContext services with PostGres as the database provider
 builder.Services.AddDbContext<AppDbContext>(options=>
 options.UseNpgsql(builder.Configuration.GetConnectionString("WebApiDatabase")));
 

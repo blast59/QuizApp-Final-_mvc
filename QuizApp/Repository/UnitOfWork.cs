@@ -9,10 +9,13 @@ namespace QuizApp.Repository
         private AppDbContext _db;
         public IQuizRepository Quiz
         { get; private set; }
+        public IQuestionRepository Question
+        { get; private set; }
         public UnitOfWork(AppDbContext db) 
         {
             _db = db;
             Quiz = new QuizRepository(_db);
+            Question = new QuestionRepository(_db);
 
         }
        

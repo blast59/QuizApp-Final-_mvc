@@ -1,0 +1,77 @@
+﻿    @model Question
+
+@{
+    ViewData["Title"] = "Create Question";
+}
+
+<h2>Create a New Question</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="QuizId" class="control-label">Quiz Id</label>
+        <input type="hidden " asp-for="QuizId" value="@ViewBag.QuizId" />
+        
+    </div>
+
+    <div class="form-group">
+        <label asp-for="QuestionText" class="control-label">Question Text</label>
+        <textarea asp-for="QuestionText" class="form-control"></textarea>
+        <span asp-validation-for="QuestionText" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="OptionA" class="control-label">Option A</label>
+        <input asp-for="OptionA" class="form-control" />
+        <span asp-validation-for="OptionA" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="OptionB" class="control-label">Option B</label>
+        <input asp-for="OptionB" class="form-control" />
+        <span asp-validation-for="OptionB" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="OptionC" class="control-label">Option C</label>
+        <input asp-for="OptionC" class="form-control" />
+        <span asp-validation-for="OptionC" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="OptionD" class="control-label">Option D</label>
+        <input asp-for="OptionD" class="form-control" />
+        <span asp-validation-for="OptionD" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CorrectOption" class="control-label">Correct Option</label>
+        <input asp-for="CorrectOption" class="form-control" />
+        <span asp-validation-for="CorrectOption" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TimeLimitInSeconds" class="control-label">Time Limit (in seconds)</label>
+        <input asp-for="TimeLimitInSeconds" class="form-control" />
+        <span asp-validation-for="TimeLimitInSeconds" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Difficulty" class="control-label">Difficulty</label>
+        <input asp-for="Difficulty" class="form-control" />
+        <span asp-validation-for="Difficulty" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CreatedBy" class="control-label">Created By (User Id)</label>
+        <input asp-for="CreatedBy" class="form-control" />
+        <span asp-validation-for="CreatedBy" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CreatedAt" class="control-label">Created At (Timestamp)</label>
+        <input asp-for="CreatedAt" class="form-control" />
+        <span asp-validation-for="CreatedAt" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Question</button>
+</form>

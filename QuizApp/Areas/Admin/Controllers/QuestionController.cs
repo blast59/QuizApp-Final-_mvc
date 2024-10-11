@@ -19,8 +19,20 @@ namespace QuizApp.Areas.Admin.Controllers
         {
             _unitOfWork = unitOfWork;
         }
+        public IActionResult AllIndex()
+        {
+            List<Question> ObjQuizList = _unitOfWork.Question.GetAll().ToList();
+            return View(ObjQuizList);
+        }
+
         public IActionResult Index(int? id)
         {
+            if(id == 0 || id== null)
+                  return NotFound();
+            if(id == -1)
+            {
+                List<Question> ObjQuizList1 = _unitOfWork.Question.GetAll().ToList();
+            }
             List<Question> ObjQuizList = _unitOfWork.Question.GetAll().Where(u => u.QuizId == id).ToList();
             ViewBag.QuizId = id;
             var quiz = _unitOfWork.Quiz.Get(q => q.quiz_id == id);

@@ -8,8 +8,8 @@
 
 <form asp-action="Create" method="post">
     <div class="form-group">
-        <label asp-for="QuizId" class="control-label">Quiz Id</label>
-        <input type="hidden " asp-for="QuizId" value="@ViewBag.QuizId" />
+     
+        <input  asp-for="QuizId" hidden value="@ViewBag.QuizId" />
         
     </div>
 
@@ -73,5 +73,10 @@
         <span asp-validation-for="CreatedAt" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary">Create Question</button>
+    <div class="d-flex justify-content-start mt-3">
+        <button type="submit" class="btn btn-primary me-2">Create Question</button>
+        <a asp-controller="Quiz" asp-action="Index" class="btn btn-outline-secondary">Back To List</a>
+    </div>
+
+
 </form>

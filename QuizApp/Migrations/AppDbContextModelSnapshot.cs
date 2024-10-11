@@ -71,7 +71,26 @@ namespace QuizApp.Migrations
 
                     b.HasKey("QuestionId");
 
+                    b.HasIndex("QuizId");
+
                     b.ToTable("Question");
+
+                    b.HasData(
+                        new
+                        {
+                            QuestionId = 1,
+                            CorrectOption = "University of California, Berkeley",
+                            CreatedAt = 1,
+                            CreatedBy = 1,
+                            Difficulty = "easy",
+                            OptionA = "MIT",
+                            OptionB = "Harvard",
+                            OptionC = "University of California, Berkeley",
+                            OptionD = "Tsinghua University, Beijing",
+                            QuestionText = "In which University was PostGres Developed",
+                            QuizId = 1,
+                            TimeLimitInSeconds = 30
+                        });
                 });
 
             modelBuilder.Entity("QuizApp.Models.Quiz", b =>
@@ -84,7 +103,8 @@ namespace QuizApp.Migrations
 
                     b.Property<string>("Topic")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(15)
+                        .HasColumnType("character varying(15)");
 
                     b.HasKey("quiz_id");
 
@@ -108,30 +128,15 @@ namespace QuizApp.Migrations
                         });
                 });
 
-            modelBuilder.Entity("QuizApp.Models.Submission", b =>
+            modelBuilder.Entity("QuizApp.Models.Question", b =>
                 {
-                    b.Property<int>("Submission_Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                    b.HasOne("QuizApp.Models.Quiz", "Quiz")
+                        .WithMany()
+                        .HasForeignKey("QuizId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Submission_Id"));
-
-                    b.Property<int>("Quiz_Id")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Score")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("SubmittedAt")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Submission_Id");
-
-                    b.ToTable("Submissions");
+                    b.Navigation("Quiz");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using QuizApp.Models;
 using static System.Formats.Asn1.AsnWriter;
 
 namespace QuizApp.Data_Server
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext
     {
         protected readonly IConfiguration Configuration;
         public AppDbContext(IConfiguration configuration)
@@ -19,16 +20,18 @@ namespace QuizApp.Data_Server
         }
         public DbSet<Quiz> Quiz { get; set; }
         public DbSet<Question> Question { get; set; }
+        public DbSet<ApplicationUser> ApplicationUser { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder); 
             modelBuilder.Entity<Quiz>().HasData(
                     new Quiz { quiz_id = 1, Topic = "SQL" },
                     new Quiz { quiz_id = 2, Topic = "C#" },
                     new Quiz { quiz_id = 3, Topic = ".Net" }
          );
-            modelBuilder.Entity<Question>().HasData(
-                new Question
+          modelBuilder.Entity<Question>().HasData(
+              new Question
                 {
                     QuestionId = 1,
                     QuizId = 1,
@@ -44,9 +47,9 @@ namespace QuizApp.Data_Server
                    
                 }
             );
-            modelBuilder.Entity<Submission>().HasData(
-                    new Submission { Submission_Id = 1, UserId = 1, Quiz_Id = 1, Score = "10", SubmittedAt = DateTime.Now }
-                    );
+            //modelBuilder.Entity<Submission>().HasData(
+            //        new Submission { Submission_Id = 1, UserId = 1, Quiz_Id = 1, Score = "10",SubmittedAt=DateTime.UtcNow }
+            //        );
                     
     }
         public DbSet<Submission> Submission { get; set; }

@@ -12,8 +12,8 @@ namespace QuizApp.Models
         public int Quiz_Id { get; set; }
         [Required]
         public string Score { get; set; }
-        [Required]
-        public DateTime SubmittedAt { get; set;}
-            
+        //[DataType]
+        //public DateTime SubmittedAt { get; set; } = DateTime.Now;
+
     }
 }

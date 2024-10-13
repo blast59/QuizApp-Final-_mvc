@@ -32,6 +32,7 @@ namespace QuizApp.Areas.Participant.Controllers
         }
         public IActionResult TakeTest(int? id)
         {
+            //var questions = _db.Question.Where(q => q.QuizId == id).ToList();
             // Fetch all questions for a specific quiz (assuming QuizId = 1)
             var questions = _db.Question.Where(q => q.QuizId == id).ToList();
             return View(questions);

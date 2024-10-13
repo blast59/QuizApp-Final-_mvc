@@ -61,6 +61,8 @@ namespace QuizApp.Areas.Admin.Controllers
 
         public IActionResult Edit(int? id)
         {
+            
+           
             ViewBag.QuestionId = id;
             if (id == null || id == 0)
             {
@@ -73,6 +75,7 @@ namespace QuizApp.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+            ViewBag.QuizId = Editquiz.QuizId;
             return View(Editquiz);
         }
         [HttpPost]
@@ -103,6 +106,7 @@ namespace QuizApp.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+            ViewBag.QuizId = Editquiz.QuizId;
             return View(Editquiz);
         }
         [HttpPost, ActionName("Delete")]

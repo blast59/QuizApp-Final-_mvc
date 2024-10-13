@@ -1,0 +1,45 @@
+﻿@model List<Question>
+
+@{
+    ViewData["Title"] = "Take Test";
+}
+
+<h2>MCQ Test</h2>
+
+<form asp-action="SubmitTest" method="post">
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        var question = Model[i];
+
+        <div class="question-block">
+            <h4>@(i + 1). @question.QuestionText</h4>
+
+            <div>
+                <input type="radio" id="q@i-a" name="responses[@i].SelectedOption" value="A" required />
+                <label for="q@i-a">A. @question.OptionA</label>
+            </div>
+
+            <div>
+                <input type="radio" id="q@i-b" name="responses[@i].SelectedOption" value="B" />
+                <label for="q@i-b">B. @question.OptionB</label>
+            </div>
+
+            <div>
+                <input type="radio" id="q@i-c" name="responses[@i].SelectedOption" value="C" />
+                <label for="q@i-c">C. @question.OptionC</label>
+            </div>
+
+            <div>
+                <input type="radio" id="q@i-d" name="responses[@i].SelectedOption" value="D" />
+                <label for="q@i-d">D. @question.OptionD</label>
+            </div>
+
+            <!-- Hidden Inputs to Track Question ID and Correct Option -->
+            <input type="hidden" name="responses[@i].QuestionId" value="@question.QuestionId" />
+            <input type="hidden" name="responses[@i].CorrectOption" value="@question.CorrectOption" />
+        </div>
+        <hr />
+    }
+
+    <button type="submit" class="btn btn-primary">Submit Test</button>
+</form>

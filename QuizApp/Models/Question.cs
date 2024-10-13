@@ -13,7 +13,7 @@ namespace QuizApp.Models
         [Required]
         public int QuizId { get; set; }
         [ForeignKey("QuizId")]
-        public Quiz Quiz { get; set; }
+        public Quiz? Quiz { get; set; }
         [Required]
         public string QuestionText { get; set; }
         [Required]
@@ -36,7 +36,6 @@ namespace QuizApp.Models
         public string Difficulty { get; set; }
         [Required]
         public int CreatedBy { get; set; }
-        [Required]
-        public int CreatedAt { get; set; }
+        
     }
 }

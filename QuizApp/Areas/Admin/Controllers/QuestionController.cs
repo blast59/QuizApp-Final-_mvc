@@ -48,7 +48,7 @@ namespace QuizApp.Areas.Admin.Controllers
         }
         [HttpPost]
         public IActionResult Create(Question _obj)
-        {
+        {         
             if (ModelState.IsValid)
             {
                 _unitOfWork.Question.Add(_obj);

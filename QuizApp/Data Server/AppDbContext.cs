@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using QuizApp.Models;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace QuizApp.Data_Server
 {
@@ -40,11 +41,15 @@ namespace QuizApp.Data_Server
                     TimeLimitInSeconds = 30,
                     Difficulty = "easy",
                     CreatedBy = 1,
-                    CreatedAt = 1
+                   
                 }
             );
-
-        }
+            modelBuilder.Entity<Submission>().HasData(
+                    new Submission { Submission_Id = 1, UserId = 1, Quiz_Id = 1, Score = "10", SubmittedAt = DateTime.Now }
+                    );
+                    
+    }
+        public DbSet<Submission> Submission { get; set; }
     }
 }
 

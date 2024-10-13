@@ -10,8 +10,10 @@ namespace QuizApp.Models
         public int UserId { get; set; }
         [Required]
         public int Quiz_Id { get; set; }
+        [Required]
         public string Score { get; set; }
-        public int SubmittedAt { get; set;}
+        [Required]
+        public DateTime SubmittedAt { get; set;}
             
     }
 }

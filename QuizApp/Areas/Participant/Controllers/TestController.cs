@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Azure;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QuizApp.Data_Server;
 using QuizApp.Models;
+using System.Security.Claims;
+using QuizAppResponse = QuizApp.Models.Response;
 
 namespace QuizApp.Areas.Participant.Controllers
 {
@@ -38,90 +41,44 @@ namespace QuizApp.Areas.Participant.Controllers
             return View(questions);
         }
         [HttpPost]
-        public IActionResult SubmitTest(List<Question> responses)
+        public IActionResult SubmitTest(List<QuizAppResponse> Responses , int QuizId)
         {
-            //Handle submission logic, calculate score, etc.
-            //int score = responses.Count(r => r.SelectedOption == r.CorrectOption);
-            //ViewBag.Score = score;
+            int correctAnswers = 0;
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            // Evaluate the test
+            foreach (var QuizAppResponse in Responses)
+            {
+                var question = _db.Question.Find(QuizAppResponse.QuestionId);
+                if (question != null && QuizAppResponse.SelectedOption == question.CorrectOption)
+                {
+                    correctAnswers++;
+                }
+            }
 
-            return View("Result");
+            // Calculate score as a percentage
+            int totalQuestions = Responses.Count;
+            string score = $"{(correctAnswers * 100) / totalQuestions}%";
+
+            // Save submission to the database
+            var submission = new Submission
+            {
+                UserId = int.Parse(userId) , // Gets the logged-in user's ID
+ // Hardcoded for now. Replace with actual logged-in user ID.
+                Quiz_Id = 1, // Replace with the relevant quiz ID.
+                Score = score.ToString()
+            };
+
+            _db.Submission.Add(submission);
+            _db.SaveChanges();
+
+            // Redirect to a confirmation or result page
+            return RedirectToAction("TestResult", new { score = score });
         }
 
-        //public IActionResult Create(int? Id)
-        //{
-        //    ViewBag.QuizId = Id;
-        //    return View();
-        //}
-        //[HttpPost]
-        //public IActionResult Create(Question _obj)
-        //{
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        _unitOfWork.Question.Add(_obj);
-        //        _unitOfWork.Save();
-        //        TempData["Success"] = "Topic added successfully";
-        //        return RedirectToAction("Index", new { id = _obj.QuizId });
-        //    }
-        //    return View();
-        //}
-
-        //public IActionResult Edit(int? id)
-        //{
-        //    ViewBag.QuestionId = id;
-        //    if (id == null || id == 0)
-        //    {
-        //        return NotFound();
-        //    }
-        //    //Quiz Editquiz = _db.Quiz.Find(id);      //finds the record with the help of only primary key
-        //    Question Editquiz = _unitOfWork.Question.Get(u => u.QuestionId == id);
-        //    //Quiz Editquiz2 = _db.Quiz.Where(u => u.quiz_id == id).FirstOrDefault();
-        //    if (Editquiz == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(Editquiz);
-        //}
-        //[HttpPost]
-        //public IActionResult Edit(Question _obj)
-        //{
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        //_db.Quiz.Update(_obj);
-        //        //_db.SaveChanges();
-        //        _unitOfWork.Question.Update(_obj);
-        //        _unitOfWork.Save();
-
-        //        TempData["Success"] = "Topic changed successfully";
-        //        return RedirectToAction("Index", new { id = _obj.QuizId });
-        //    }
-        //    return View();
-        //}
-        //public IActionResult Delete(int? id)
-        //{
-        //    ViewBag.QuestionId = id;
-        //    if (id == null || id == 0)
-        //    {
-        //        return NotFound();
-        //    }
-        //    Question? Editquiz = _unitOfWork.Question.Get(u => u.QuestionId == id);//finds the record with the help of only primary key
-        //    if (Editquiz == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(Editquiz);
-        //}
-        //[HttpPost, ActionName("Delete")]
-        //public IActionResult DeletePOST(int? id)
-        //{
-        //    Question? obj = _unitOfWork.Question.Get(u => u.QuestionId == id);
-        //    if (obj == null)
-        //        return NotFound();
-        //    _unitOfWork.Question.Remove(obj);
-        //    _unitOfWork.Save();
-        //    TempData["Success"] = "Topic deleted successfully";
-        //    return RedirectToAction("Index" , new { id = obj.QuizId });
-        //}
+        public IActionResult TestResult(string score)
+        {
+            ViewBag.Score = score;
+            return View();
+        }
     }
 }

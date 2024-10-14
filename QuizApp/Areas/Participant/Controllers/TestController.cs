@@ -40,7 +40,7 @@ namespace QuizApp.Areas.Participant.Controllers
         [HttpPost]
         public IActionResult SubmitTest(List<Question> responses)
         {
-            // Handle submission logic, calculate score, etc.
+            //Handle submission logic, calculate score, etc.
             //int score = responses.Count(r => r.SelectedOption == r.CorrectOption);
             //ViewBag.Score = score;
 

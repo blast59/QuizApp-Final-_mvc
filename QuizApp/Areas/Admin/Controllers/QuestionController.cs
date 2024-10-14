@@ -1,12 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using QuizApp.Data_Server;
 using QuizApp.Models;
 using QuizApp.Repository;
 using QuizApp.Repository.IRepository;
+using QuizApp.Utility;
 using System.Runtime.CompilerServices;
 namespace QuizApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class QuestionController : Controller
     {
         //private readonly AppDbContext _db;
@@ -24,7 +27,6 @@ namespace QuizApp.Areas.Admin.Controllers
             List<Question> ObjQuizList = _unitOfWork.Question.GetAll().ToList();
             return View(ObjQuizList);
         }
-
         public IActionResult Index(int? id)
         {
             if(id == 0 || id== null)

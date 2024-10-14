@@ -11,8 +11,8 @@ using QuizApp.Data_Server;
 namespace QuizApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241010041618_adding quiz , question and submission table ")]
-    partial class addingquizquestionandsubmissiontable
+    [Migration("20241011094649_QuizandQuestiontable")]
+    partial class QuizandQuestiontable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -74,6 +74,8 @@ namespace QuizApp.Migrations
 
                     b.HasKey("QuestionId");
 
+                    b.HasIndex("QuizId");
+
                     b.ToTable("Question");
                 });
 
@@ -95,30 +97,15 @@ namespace QuizApp.Migrations
                     b.ToTable("Quiz");
                 });
 
-            modelBuilder.Entity("QuizApp.Models.Submission", b =>
+            modelBuilder.Entity("QuizApp.Models.Question", b =>
                 {
-                    b.Property<int>("Submission_Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                    b.HasOne("QuizApp.Models.Quiz", "Quiz")
+                        .WithMany()
+                        .HasForeignKey("QuizId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Submission_Id"));
-
-                    b.Property<int>("Quiz_Id")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Score")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("SubmittedAt")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Submission_Id");
-
-                    b.ToTable("Submissions");
+                    b.Navigation("Quiz");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,12 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using QuizApp.Data_Server;
 using QuizApp.Models;
 using QuizApp.Repository;
 using QuizApp.Repository.IRepository;
+using QuizApp.Utility;
 using System.Runtime.CompilerServices;
 namespace QuizApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class QuizController : Controller
     {
         //private readonly AppDbContext _db;

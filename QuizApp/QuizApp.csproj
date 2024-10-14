@@ -22,4 +22,8 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.0-rc.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Quiz.Utility\Quiz.Utility.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizApp", "QuizApp\QuizApp.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quiz.Utility", "Quiz.Utility\Quiz.Utility.csproj", "{ECC712EB-F1F0-427C-934C-24E9943FE31B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quiz.Models", "Quiz.Models\Quiz.Models.csproj", "{BCCC1FDE-210E-49E7-A27C-F4AE62712CAE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quiz.DataAccess", "Quiz.DataAccess\Quiz.DataAccess.csproj", "{DC5F7ED3-2124-4249-B3FA-9B522A66C0EA}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{ECC712EB-F1F0-427C-934C-24E9943FE31B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECC712EB-F1F0-427C-934C-24E9943FE31B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECC712EB-F1F0-427C-934C-24E9943FE31B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BCCC1FDE-210E-49E7-A27C-F4AE62712CAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BCCC1FDE-210E-49E7-A27C-F4AE62712CAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BCCC1FDE-210E-49E7-A27C-F4AE62712CAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BCCC1FDE-210E-49E7-A27C-F4AE62712CAE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DC5F7ED3-2124-4249-B3FA-9B522A66C0EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DC5F7ED3-2124-4249-B3FA-9B522A66C0EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC5F7ED3-2124-4249-B3FA-9B522A66C0EA}.Release|Any CPU.ActiveCfg = Release|Any CPU

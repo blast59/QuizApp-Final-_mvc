@@ -12,7 +12,8 @@ namespace QuizApp.Models
 
         public string Topic { get; set; }
         [ForeignKey("Topic")]
-        public string?  Name { get; set; } 
+        
+        public string? UserName { get; set; }
 
         public string UserId { get; set; }
         [ForeignKey("UserId")]
@@ -27,6 +28,8 @@ namespace QuizApp.Models
         public string Score { get; set; }
         [DataType(DataType.DateTime)] // Optional, helps with validation
         public DateTime SubmittedAt { get; set; } = DateTime.Now; // Default value in C#
+
+        public string Result { get; set; }
 
     }
 }

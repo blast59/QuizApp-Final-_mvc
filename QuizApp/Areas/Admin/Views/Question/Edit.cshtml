@@ -1,82 +1,89 @@
 ﻿    @model Question
 
-@{
-    ViewData["Title"] = "Create Question";
-}
-
-<h2>Edit Question</h2>
-
-<form asp-action="Edit" method="post">
-    <div class="form-group">
-        <input hidden asp-for="QuizId"  />
-
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Edit Question</h2>
+            </div>
+        </div>
     </div>
-    <div class="form-group">
-        <input type="hidden" asp-for="QuestionId"  />
-    </div>
+    <form asp-action="Edit" method="post">
+        <div class="form-group">
+            <input hidden asp-for="QuizId" />
 
-    <div class="form-group">
-        <label asp-for="QuestionText" class="control-label">Question Text</label>
-        <textarea asp-for="QuestionText" class="form-control"></textarea>
-        <span asp-validation-for="QuestionText" class="text-danger"></span>
-    </div>
+        </div>
+        <div class="form-group">
+            <input type="hidden" asp-for="QuestionId" />
+        </div>
 
-    <div class="form-group">
-        <label asp-for="OptionA" class="control-label">Option A</label>
-        <input asp-for="OptionA" class="form-control" />
-        <span asp-validation-for="OptionA" class="text-danger"></span>
-    </div>
+        <div class="form-group">
+            <label asp-for="QuestionText" class="control-label">Question Text</label>
+            <textarea asp-for="QuestionText" class="form-control"></textarea>
+            <span asp-validation-for="QuestionText" class="text-danger"></span>
+        </div>
 
-    <div class="form-group">
-        <label asp-for="OptionB" class="control-label">Option B</label>
-        <input asp-for="OptionB" class="form-control" />
-        <span asp-validation-for="OptionB" class="text-danger"></span>
-    </div>
+        <div class="form-group">
+            <label asp-for="OptionA" class="control-label">Option A</label>
+            <input asp-for="OptionA" class="form-control" />
+            <span asp-validation-for="OptionA" class="text-danger"></span>
+        </div>
 
-    <div class="form-group">
-        <label asp-for="OptionC" class="control-label">Option C</label>
-        <input asp-for="OptionC" class="form-control" />
-        <span asp-validation-for="OptionC" class="text-danger"></span>
-    </div>
+        <div class="form-group">
+            <label asp-for="OptionB" class="control-label">Option B</label>
+            <input asp-for="OptionB" class="form-control" />
+            <span asp-validation-for="OptionB" class="text-danger"></span>
+        </div>
 
-    <div class="form-group">
-        <label asp-for="OptionD" class="control-label">Option D</label>
-        <input asp-for="OptionD" class="form-control" />
-        <span asp-validation-for="OptionD" class="text-danger"></span>
-    </div>
+        <div class="form-group">
+            <label asp-for="OptionC" class="control-label">Option C</label>
+            <input asp-for="OptionC" class="form-control" />
+            <span asp-validation-for="OptionC" class="text-danger"></span>
+        </div>
 
-    <div class="form-group">
-        <label asp-for="CorrectOption" class="control-label">Correct Option</label>
-        <input asp-for="CorrectOption" class="form-control" />
-        <span asp-validation-for="CorrectOption" class="text-danger"></span>
-    </div>
+        <div class="form-group">
+            <label asp-for="OptionD" class="control-label">Option D</label>
+            <input asp-for="OptionD" class="form-control" />
+            <span asp-validation-for="OptionD" class="text-danger"></span>
+        </div>
 
-    <div class="form-group">
-        <label asp-for="TimeLimitInSeconds" class="control-label">Time Limit (in seconds)</label>
-        <input asp-for="TimeLimitInSeconds" class="form-control" />
-        <span asp-validation-for="TimeLimitInSeconds" class="text-danger"></span>
-    </div>
+        <div class="form-group">
+            <label asp-for="CorrectOption" class="control-label">Correct Option</label>
+            <input asp-for="CorrectOption" class="form-control" />
+            <span asp-validation-for="CorrectOption" class="text-danger"></span>
+        </div>
 
-    <div class="form-group">
-        <label asp-for="Difficulty" class="control-label">Difficulty</label>
-        <input asp-for="Difficulty" class="form-control" />
-        <span asp-validation-for="Difficulty" class="text-danger"></span>
-    </div>
+        <div class="form-group">
+            <label asp-for="TimeLimitInSeconds" class="control-label">Time Limit (in seconds)</label>
+            <input asp-for="TimeLimitInSeconds" class="form-control" />
+            <span asp-validation-for="TimeLimitInSeconds" class="text-danger"></span>
+        </div>
 
-    <div class="form-group">
-        <label asp-for="CreatedBy" class="control-label">Created By (User Id)</label>
-        <input asp-for="CreatedBy" class="form-control" />
-        <span asp-validation-for="CreatedBy" class="text-danger"></span>
-    </div>
+        <div class="form-group">
+            <label asp-for="Difficulty" class="control-label">Difficulty</label>
+            <input asp-for="Difficulty" class="form-control" />
+            <span asp-validation-for="Difficulty" class="text-danger"></span>
+        </div>
 
-    
+        <div class="form-group">
+            <label asp-for="CreatedBy" class="control-label">Created By (User Id)</label>
+            <input asp-for="CreatedBy" class="form-control" />
+            <span asp-validation-for="CreatedBy" class="text-danger"></span>
+        </div>
 
-    <div class="d-flex justify-content-start mt-3">
-        <button type="submit" class="btn btn-primary me-2">Edit Question</button>
-        <a asp-controller="Question" asp-action="Index" asp-route-Id="@ViewBag.QuizId" class="btn btn-outline-secondary">Back To List</a>
-    </div>
 
-</form>
+
+        <div class="d-flex justify-content-start mt-3">
+            <button type="submit" class="btn btn-primary me-2">Edit Question</button>
+            <a asp-controller="Question" asp-action="Index" asp-route-Id="@ViewBag.QuizId" class="btn btn-outline-secondary">Back To List</a>
+        </div>
+
+    </form>
+
+</div>
+
+
+
 @section Scripts {
     <script>
         tinymce.init({

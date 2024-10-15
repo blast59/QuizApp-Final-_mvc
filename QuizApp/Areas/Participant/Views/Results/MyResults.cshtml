@@ -10,7 +10,9 @@
 <table class="table">
     <thead>
         <tr>
+            <th>Name</th>
             <th>Quiz ID</th>
+            <th>Topic</th>
             <th>Score</th>
             <th>Submission Date</th>
         </tr>
@@ -19,6 +21,7 @@
         @foreach (var submission in Model)
         {
             <tr>
+                <td>@submission.UserName</td>
                 <td>@submission.Quiz_Id</td>
                 <td>@submission.Topic</td>
                 <td>@submission.Score</td>

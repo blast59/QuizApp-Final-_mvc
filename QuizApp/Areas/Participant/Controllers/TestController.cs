@@ -64,12 +64,15 @@ namespace QuizApp.Areas.Participant.Controllers
             // Calculate score as a percentage
             int totalQuestions = Responses.Count;
             string score = $"{(correctAnswers * 100) / totalQuestions}%";
-
+            string proxy = score.Substring(0, score.Length - 2 + 1);
+            int marks = int.Parse(proxy);
             // Save submission to the database
             var submission = new Submission
             {
                 UserId = userId , // Gets the logged-in user's ID
  // Hardcoded for now. Replace with actual logged-in user ID.
+                Result = marks > 40 ? "Pass" : "Fail" ,
+                UserName= userName ,
                 Topic = topic ,
                 Quiz_Id = QuizId, 
                 Score = score.ToString(),

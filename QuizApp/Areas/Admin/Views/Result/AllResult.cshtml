@@ -16,11 +16,12 @@
         <thead>
             <tr>
                 <th>Submission_Id</th>
-                <th>UserId</th>
+                <th>Name</th>
                 <th>Topic</th>
                 <th>Quiz_Id</th>
                 <th>Score</th>
                 <th>SubmittedAt</th>
+                <th>Result</th>
             </tr>
         </thead>
         <tbody>
@@ -28,11 +29,12 @@
             {
                 <tr>
                     <td>@obj.Submission_Id</td>
-                    <td>@obj.UserId</td>
+                    <td>@obj.UserName</td>
                     <td>@obj.Topic</td>
                     <td>@obj.Quiz_Id</td>
                     <td>@obj.Score</td>
                     <td>@obj.SubmittedAt</td>
+                    <td>@obj.Result</td>
                 </tr>
             }
         </tbody>

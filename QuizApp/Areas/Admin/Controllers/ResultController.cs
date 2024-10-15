@@ -22,6 +22,8 @@ namespace QuizApp.Areas.Admin.Controllers
         }
         public IActionResult AllResult() {
             List<Submission> ObjQuizList = _db.Submission.ToList();
+            //string marks = ObjQuizList.Score;
+            //bool flag = ObjQuizList.Score
             return View(ObjQuizList);
 
         }

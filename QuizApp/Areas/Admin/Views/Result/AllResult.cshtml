@@ -1,0 +1,45 @@
+﻿@model List<Submission>
+
+
+@{
+    ViewData["Title"] = "My Test Results";
+}
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">All Test Result</h2>
+            </div>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Submission_Id</th>
+                <th>UserId</th>
+                <th>Topic</th>
+                <th>Quiz_Id</th>
+                <th>Score</th>
+                <th>SubmittedAt</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model)
+            {
+                <tr>
+                    <td>@obj.Submission_Id</td>
+                    <td>@obj.UserId</td>
+                    <td>@obj.Topic</td>
+                    <td>@obj.Quiz_Id</td>
+                    <td>@obj.Score</td>
+                    <td>@obj.SubmittedAt</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+
+
+

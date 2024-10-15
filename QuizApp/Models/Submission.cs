@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using IdentityUser = Microsoft.AspNetCore.Identity.IdentityUser;
 
 namespace QuizApp.Models
 {
@@ -7,13 +9,24 @@ namespace QuizApp.Models
         [Key]
         public int Submission_Id { get; set; }
         [Required]
-        public int UserId { get; set; }
-        [Required]
+
+        public string Topic { get; set; }
+        [ForeignKey("Topic")]
+        public string?  Name { get; set; } 
+
+        public string UserId { get; set; }
+        [ForeignKey("UserId")]
+        public virtual IdentityUser User { get; set; } // Assuming you're using IdentityUser
+
+
         public int Quiz_Id { get; set; }
+        [ForeignKey("Quiz_Id")]
+        public Quiz? Quiz { get; set; }
+
         [Required]
         public string Score { get; set; }
-        //[DataType]
-        //public DateTime SubmittedAt { get; set; } = DateTime.Now;
+        [DataType(DataType.DateTime)] // Optional, helps with validation
+        public DateTime SubmittedAt { get; set; } = DateTime.Now; // Default value in C#
 
     }
 }

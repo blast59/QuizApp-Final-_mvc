@@ -22,7 +22,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link "  asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         @if (User.IsInRole(SD.Role_Admin))
                         {
@@ -32,27 +32,28 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li class="nav-item">
-                                        <a class="dropdown-item" asp-controller="Quiz" asp-action="Index">Topic</a>
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="Quiz" asp-action="Index">Topic</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="dropdown-item" asp-controller="Question" asp-action="AllIndex">Question</a>
+                                        <a class="dropdown-item" asp-area="Admin" asp-controller="Question" asp-action="AllIndex">Question</a>
                                     </li>
-
+                                    
                                     <li><hr class="dropdown-divider"></li>
-
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link  " asp-area="Admin" asp-controller="Result" asp-action="AllResult">View All Result</a>
                             </li>
                         }
                         @if (User.IsInRole(SD.Role_Participant))
                         {
                             <li class="nav-item">
-                                <a class="nav-link  " asp-area="participant" asp-controller="Test" asp-action="Index">Take Test</a>
+                                <a class="nav-link  " asp-area="Participant" asp-controller="Test" asp-action="Index">Take Test</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link  " asp-area="Participant" asp-controller="Results" asp-action="MyResults">My Results</a>
                             </li>
                         }
-                        <li class="nav-item">
-                            <a class="nav-link  " asp-area="" asp-controller="" asp-action="">Profile</a>
-                        </li>
-
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

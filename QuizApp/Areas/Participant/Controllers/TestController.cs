@@ -1,4 +1,5 @@
 ﻿using Azure;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QuizApp.Data_Server;
@@ -35,21 +36,26 @@ namespace QuizApp.Areas.Participant.Controllers
         }
         public IActionResult TakeTest(int? id)
         {
+
             //var questions = _db.Question.Where(q => q.QuizId == id).ToList();
             // Fetch all questions for a specific quiz (assuming QuizId = 1)
             var questions = _db.Question.Where(q => q.QuizId == id).ToList();
             return View(questions);
         }
         [HttpPost]
-        public IActionResult SubmitTest(List<QuizAppResponse> Responses , int QuizId)
+        public  IActionResult SubmitTest(List<QuizAppResponse> Responses , int QuizId)
         {
+            string topic = _db.Quiz.Where(u => u.quiz_id == QuizId).First().Topic;
             int correctAnswers = 0;
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userName = User.FindFirstValue(ClaimTypes.Name);
+
+            
             // Evaluate the test
             foreach (var QuizAppResponse in Responses)
             {
                 var question = _db.Question.Find(QuizAppResponse.QuestionId);
-                if (question != null && QuizAppResponse.SelectedOption == question.CorrectOption)
+                if (question != null && QuizAppResponse.SelectedAnswer == question.CorrectOption)
                 {
                     correctAnswers++;
                 }
@@ -62,12 +68,14 @@ namespace QuizApp.Areas.Participant.Controllers
             // Save submission to the database
             var submission = new Submission
             {
-                UserId = int.Parse(userId) , // Gets the logged-in user's ID
+                UserId = userId , // Gets the logged-in user's ID
  // Hardcoded for now. Replace with actual logged-in user ID.
-                Quiz_Id = 1, // Replace with the relevant quiz ID.
-                Score = score.ToString()
-            };
-
+                Topic = topic ,
+                Quiz_Id = QuizId, 
+                Score = score.ToString(),
+                SubmittedAt = DateTime.UtcNow
+        };
+            
             _db.Submission.Add(submission);
             _db.SaveChanges();
 

@@ -15,30 +15,28 @@
             <h4>@(i + 1). @question.QuestionText</h4>
 
             <div>
-                <input type="radio" id="q@i-a" name="responses[@i].SelectedOption" value="A" required />
+                <input type="radio" id="q@i-a" name="responses[@i].SelectedAnswer" value="@question.OptionA" required />
                 <label for="q@i-a">A. @question.OptionA</label>
             </div>
 
             <div>
-                <input type="radio" id="q@i-b" name="responses[@i].SelectedOption" value="B" />
+                <input type="radio" id="q@i-b" name="responses[@i].SelectedAnswer" value="@question.OptionB" />
                 <label for="q@i-b">B. @question.OptionB</label>
             </div>
 
             <div>
-                <input type="radio" id="q@i-c" name="responses[@i].SelectedOption" value="C" />
+                <input type="radio" id="q@i-c" name="responses[@i].SelectedAnswer" value="@question.OptionC" />
                 <label for="q@i-c">C. @question.OptionC</label>
             </div>
 
             <div>
-                <input type="radio" id="q@i-d" name="responses[@i].SelectedOption" value="D" />
+                <input type="radio" id="q@i-d" name="responses[@i].SelectedAnswer" value="@question.OptionD" />
                 <label for="q@i-d">D. @question.OptionD</label>
             </div>
 
-            <!-- Hidden Inputs to Track Question ID and Correct Option -->
             <input type="hidden" name="responses[@i].QuestionId" value="@question.QuestionId" />
-            <input type="hidden" name="responses[@i].CorrectOption" value="@question.CorrectOption" />
+            <input type="hidden" name="responses[@i].CorrectAnswer" value="@question.CorrectOption" />
             <input type="hidden" name="QuizId" value="@question.QuizId" />
-
         </div>
         <hr />
     }

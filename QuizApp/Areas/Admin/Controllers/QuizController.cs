@@ -66,7 +66,6 @@ namespace QuizApp.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Edit(Quiz _obj)
         {
-
             if (ModelState.IsValid)
             {
                 //_db.Quiz.Update(_obj);

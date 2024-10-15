@@ -1,0 +1,29 @@
+﻿@model List<QuizApp.Models.Submission>
+
+
+@{
+    ViewData["Title"] = "My Test Results";
+}
+
+<h2>My Test Results</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Quiz ID</th>
+            <th>Score</th>
+            <th>Submission Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var submission in Model)
+        {
+            <tr>
+                <td>@submission.Quiz_Id</td>
+                <td>@submission.Topic</td>
+                <td>@submission.Score</td>
+                <td>@submission.SubmittedAt.ToString("yyyy-MM-dd HH:mm:ss")</td>
+            </tr>
+        }
+    </tbody>
+</table>

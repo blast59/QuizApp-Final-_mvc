@@ -345,10 +345,22 @@ namespace QuizApp.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
+                    b.Property<DateTime>("SubmittedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Topic")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Submission_Id");
+
+                    b.HasIndex("Quiz_Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Submission");
                 });
@@ -436,6 +448,25 @@ namespace QuizApp.Migrations
                         .IsRequired();
 
                     b.Navigation("Quiz");
+                });
+
+            modelBuilder.Entity("QuizApp.Models.Submission", b =>
+                {
+                    b.HasOne("QuizApp.Models.Quiz", "Quiz")
+                        .WithMany()
+                        .HasForeignKey("Quiz_Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Quiz");
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

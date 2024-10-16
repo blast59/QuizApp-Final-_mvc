@@ -9,10 +9,20 @@
         </div>
     </div>
     <div class="card-body p-4">
-        <div class="row pb-3">
+        @* <div class="row pb-3">
             <div class="col-6">
+                 <form method="get" asp-action="YourActionName">
+                    <div class="input-group">
+                        <select name="difficulty" class="form-select" onchange="this.form.submit()">
+                            <option value="">All Difficulties</option>
+                            <option value="Easy" @(ViewData["SelectedDifficulty"]?.ToString() == "Easy" ? "selected" : "")>Easy</option>
+                            <option value="Medium" @(ViewData["SelectedDifficulty"]?.ToString() == "Medium" ? "selected" : "")>Medium</option>
+                            <option value="Hard" @(ViewData["SelectedDifficulty"]?.ToString() == "Hard" ? "selected" : "")>Hard</option>
+                        </select>
+                    </div>
+                </form>
             </div>
-        </div>
+        </div> *@
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>

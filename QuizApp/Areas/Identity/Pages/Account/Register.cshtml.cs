@@ -109,6 +109,7 @@ namespace QuizApp.Areas.Identity.Pages.Account
             [ValidateNever]
             public IEnumerable<SelectListItem> RoleList { get; set; }
             [Required]
+            [Display(Name = "Full name")]
             public string Name { get; set; }   
             public string? StreetAddress{ get; set; }
             public string? City { get; set; }

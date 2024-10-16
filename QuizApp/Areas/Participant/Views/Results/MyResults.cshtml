@@ -1,32 +1,40 @@
 ﻿@model List<QuizApp.Models.Submission>
 
 
-@{
-    ViewData["Title"] = "My Test Results";
-}
-
-<h2>My Test Results</h2>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Quiz ID</th>
-            <th>Topic</th>
-            <th>Score</th>
-            <th>Submission Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var submission in Model)
-        {
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">All Test Result</h2>
+            </div>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
             <tr>
-                <td>@submission.UserName</td>
-                <td>@submission.Quiz_Id</td>
-                <td>@submission.Topic</td>
-                <td>@submission.Score</td>
-                <td>@submission.SubmittedAt.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                <th>Name</th>
+                <th>Quiz ID</th>
+                <th>Topic</th>
+                <th>Score</th>
+                <th>Submission Date</th>
+                <th>Result</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var submission in Model)
+            {
+                <tr>
+                    <td>@submission.UserName</td>
+                    <td>@submission.Quiz_Id</td>
+                    <td>@submission.Topic</td>
+                    <td>@submission.Score</td>
+                    <td>@submission.SubmittedAt.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                    <td>@submission.Result</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+

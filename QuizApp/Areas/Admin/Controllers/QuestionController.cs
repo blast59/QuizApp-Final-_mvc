@@ -6,6 +6,7 @@ using QuizApp.Repository;
 using QuizApp.Repository.IRepository;
 using QuizApp.Utility;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 namespace QuizApp.Areas.Admin.Controllers
 {
     [Area("Admin")]
@@ -50,7 +51,10 @@ namespace QuizApp.Areas.Admin.Controllers
         }
         [HttpPost]
         public IActionResult Create(Question _obj)
-        {         
+        {
+            string htmlContent = _obj.QuestionText;// Get HTML content from the request
+            string plainText = Regex.Replace(htmlContent, "<.*?>", string.Empty); // Remove HTML tags
+            _obj.QuestionText = plainText;
             if (ModelState.IsValid)
             {
                 _unitOfWork.Question.Add(_obj);

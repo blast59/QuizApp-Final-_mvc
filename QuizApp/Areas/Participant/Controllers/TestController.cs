@@ -1,5 +1,4 @@
-﻿using Azure;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using QuizApp.Data_Server;
@@ -13,9 +12,11 @@ namespace QuizApp.Areas.Participant.Controllers
     public class TestController : Controller
     {
         private readonly AppDbContext _db;
+        //private readonly UserManager<ApplicationUser> _userManager;
         public TestController(AppDbContext db)
         {
             _db = db;
+            
         }
         //private readonly IUnitOfWork _unitOfWork;
         //public TestController(IUnitOfWork unitOfWork)
@@ -43,14 +44,19 @@ namespace QuizApp.Areas.Participant.Controllers
             return View(questions);
         }
         [HttpPost]
-        public  IActionResult SubmitTest(List<QuizAppResponse> Responses , int QuizId)
+        public   IActionResult SubmitTest(List<QuizAppResponse> Responses , int QuizId)
         {
             string topic = _db.Quiz.Where(u => u.quiz_id == QuizId).First().Topic;
             int correctAnswers = 0;
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var userName = User.FindFirstValue(ClaimTypes.Name);
+            //var user = _userManager.FindByIdAsync(userId).GetAwaiter().GetResult();
+            //string userName = user?.Name;
 
-            
+
+
+
+
             // Evaluate the test
             foreach (var QuizAppResponse in Responses)
             {

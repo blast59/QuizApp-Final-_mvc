@@ -5,8 +5,8 @@ using QuizApp.Repository;
 using QuizApp.Repository.IRepository;
 using Microsoft.AspNetCore.Identity;
 using QuizApp.Utility;
-
 using Microsoft.AspNetCore.Identity.UI.Services;
+using QuizApp.Models;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

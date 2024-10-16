@@ -5,9 +5,7 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizApp", "QuizApp\QuizApp.csproj", "{C1C1399D-D69A-4662-A652-7449CAD30BCB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quiz.Utility", "Quiz.Utility\Quiz.Utility.csproj", "{ECC712EB-F1F0-427C-934C-24E9943FE31B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quiz.DataAccess", "Quiz.DataAccess\Quiz.DataAccess.csproj", "{DC5F7ED3-2124-4249-B3FA-9B522A66C0EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quiz.DataAccess", "Quiz.DataAccess\Quiz.DataAccess.csproj", "{DC5F7ED3-2124-4249-B3FA-9B522A66C0EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		{C1C1399D-D69A-4662-A652-7449CAD30BCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1C1399D-D69A-4662-A652-7449CAD30BCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1C1399D-D69A-4662-A652-7449CAD30BCB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ECC712EB-F1F0-427C-934C-24E9943FE31B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ECC712EB-F1F0-427C-934C-24E9943FE31B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ECC712EB-F1F0-427C-934C-24E9943FE31B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ECC712EB-F1F0-427C-934C-24E9943FE31B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DC5F7ED3-2124-4249-B3FA-9B522A66C0EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DC5F7ED3-2124-4249-B3FA-9B522A66C0EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC5F7ED3-2124-4249-B3FA-9B522A66C0EA}.Release|Any CPU.ActiveCfg = Release|Any CPU

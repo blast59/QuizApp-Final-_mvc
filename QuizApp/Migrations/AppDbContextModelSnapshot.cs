@@ -341,6 +341,10 @@ namespace QuizApp.Migrations
                     b.Property<int>("Quiz_Id")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Result")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Score")
                         .IsRequired()
                         .HasColumnType("text");
@@ -354,6 +358,9 @@ namespace QuizApp.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserName")
                         .HasColumnType("text");
 
                     b.HasKey("Submission_Id");

@@ -1,11 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using QuizApp.Data_Server;
 using QuizApp.Models;
-using QuizApp.Repository;
 using QuizApp.Repository.IRepository;
 using QuizApp.Utility;
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 namespace QuizApp.Areas.Admin.Controllers
 {
@@ -30,9 +27,9 @@ namespace QuizApp.Areas.Admin.Controllers
         }
         public IActionResult Index(int? id)
         {
-            if(id == 0 || id== null)
-                  return NotFound();
-            if(id == -1)
+            if (id == 0 || id == null)
+                return NotFound();
+            if (id == -1)
             {
                 List<Question> ObjQuizList1 = _unitOfWork.Question.GetAll().ToList();
             }
@@ -64,11 +61,8 @@ namespace QuizApp.Areas.Admin.Controllers
             }
             return View();
         }
-
         public IActionResult Edit(int? id)
         {
-            
-           
             ViewBag.QuestionId = id;
             if (id == null || id == 0)
             {
@@ -94,7 +88,6 @@ namespace QuizApp.Areas.Admin.Controllers
                 //_db.SaveChanges();
                 _unitOfWork.Question.Update(_obj);
                 _unitOfWork.Save();
-
                 TempData["Success"] = "Topic changed successfully";
                 return RedirectToAction("Index", new { id = _obj.QuizId });
             }
@@ -124,7 +117,18 @@ namespace QuizApp.Areas.Admin.Controllers
             _unitOfWork.Question.Remove(obj);
             _unitOfWork.Save();
             TempData["Success"] = "Topic deleted successfully";
-            return RedirectToAction("Index" , new { id = obj.QuizId });
+            return RedirectToAction("Index", new { id = obj.QuizId });
         }
+
+        #region API CALLS
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            List<Question> ObjQuizList = _unitOfWork.Question.GetAll().ToList();
+            return Json(new { data = ObjQuizList });
+        }
+
+
+        #endregion
     }
 }

@@ -8,64 +8,26 @@
             </div>
         </div>
     </div>
-    <div class="card-body p-4">
-        @* <div class="row pb-3">
-            <div class="col-6">
-                 <form method="get" asp-action="YourActionName">
-                    <div class="input-group">
-                        <select name="difficulty" class="form-select" onchange="this.form.submit()">
-                            <option value="">All Difficulties</option>
-                            <option value="Easy" @(ViewData["SelectedDifficulty"]?.ToString() == "Easy" ? "selected" : "")>Easy</option>
-                            <option value="Medium" @(ViewData["SelectedDifficulty"]?.ToString() == "Medium" ? "selected" : "")>Medium</option>
-                            <option value="Hard" @(ViewData["SelectedDifficulty"]?.ToString() == "Hard" ? "selected" : "")>Hard</option>
-                        </select>
-                    </div>
-                </form>
-            </div>
-        </div> *@
-        <table class="table table-bordered table-striped">
+   @* <div class="card-body p-4">
+    </div> *@
+        <table id="tblData" class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th>Sr. No</th>
+                    <th>Sr.No</th>
                     <th>Question Text</th>
                     <th>A</th>
                     <th>B</th>
                     <th>C</th>
                     <th>D</th>
-                    <th>Answer</th>
+                    <th>Answer</th>                                 
                     <th>Difficulty</th>
-                    
                 </tr>
             </thead>
-            <tbody>
-                @{
-                    int srNo = 1;
-                }
-                @foreach (var obj in Model)
-                {
-                    <tr>
-                        <td>@srNo</td>
-                        <td>@obj.QuestionText</td>
-                        <td>@obj.OptionA</td>
-                        <td>@obj.OptionB</td>
-                        <td>@obj.OptionC</td>
-                        <td>@obj.OptionD</td>
-                        <td>@obj.CorrectOption</td>
-                        <td>@obj.Difficulty</td>
-                        @* <td>
-                            <div class="btn-group" role="group">
-                                <a asp-controller="Question" asp-action="Edit" asp-route-Id="@obj.QuestionId" class="btn btn-primary mx-2">
-                                    <i class="bi bi-pencil-square"></i> Edit
-                                </a>
-                                <a asp-controller="Question" asp-action="Delete" asp-route-Id="@obj.QuestionId" class="btn btn-danger mx-2">
-                                    <i class="bi bi-trash"></i> Delete
-                                </a>
-                            </div>
-                        </td> *@
-                    </tr>
-                    srNo++;
-                }
-            </tbody>
         </table>
-    </div>
 </div>
+
+
+@section Scripts{
+    <script src="~/js/Question.js"></script>
+}
+

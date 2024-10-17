@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="~/QuizApp.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
 </head>
 <body>
     <header>
@@ -72,11 +73,12 @@
             
             QuizApp <i class="bi bi-app"></i> Developed by Shashank Shyam Poojary
         </div>
-    </footer>
+    </footer>   
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="//cdn.datatables.net/2.1.8/js/dataTables.min.js" asp-append-version="true"></script>
     <script src="https://cdn.tiny.cloud/1/ndp36s2y8qkcvbsmwm4b86ptlufzh0iw7q3uzorf70jmn9i1/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

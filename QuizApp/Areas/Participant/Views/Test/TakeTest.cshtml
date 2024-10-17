@@ -4,42 +4,101 @@
     ViewData["Title"] = "Take Test";
 }
 
-<h2>MCQ Test</h2>
+<h2 class="text-center">MCQ Test</h2>
 
-<form asp-action="SubmitTest" method="post">
+<!-- Timer Display -->
+<div id="timer" class="text-center mb-4" style="font-size: 24px; font-weight: bold;">
+    Time Remaining: <span id="time" style="color: red;">00:00</span>
+</div>
+
+<form asp-action="SubmitTest" method="post" id="testForm" class="container">
     @for (int i = 0; i < Model.Count; i++)
     {
         var question = Model[i];
 
-        <div class="question-block">
+        <div class="question-block mb-4 border p-3 rounded shadow-sm">
             <h4>@(i + 1). @question.QuestionText</h4>
 
-            <div>
-                <input type="radio" id="q@i-a" name="responses[@i].SelectedAnswer" value="@question.OptionA" required />
-                <label for="q@i-a">A. @question.OptionA</label>
+            <div class="form-check">
+                <input type="radio" id="q@i-a" name="responses[@i].SelectedAnswer" value="@question.OptionA" class="form-check-input" required />
+                <label for="q@i-a" class="form-check-label">A. @question.OptionA</label>
             </div>
 
-            <div>
-                <input type="radio" id="q@i-b" name="responses[@i].SelectedAnswer" value="@question.OptionB" />
-                <label for="q@i-b">B. @question.OptionB</label>
+            <div class="form-check">
+                <input type="radio" id="q@i-b" name="responses[@i].SelectedAnswer" value="@question.OptionB" class="form-check-input" />
+                <label for="q@i-b" class="form-check-label">B. @question.OptionB</label>
             </div>
 
-            <div>
-                <input type="radio" id="q@i-c" name="responses[@i].SelectedAnswer" value="@question.OptionC" />
-                <label for="q@i-c">C. @question.OptionC</label>
+            <div class="form-check">
+                <input type="radio" id="q@i-c" name="responses[@i].SelectedAnswer" value="@question.OptionC" class="form-check-input" />
+                <label for="q@i-c" class="form-check-label">C. @question.OptionC</label>
             </div>
 
-            <div>
-                <input type="radio" id="q@i-d" name="responses[@i].SelectedAnswer" value="@question.OptionD" />
-                <label for="q@i-d">D. @question.OptionD</label>
+            <div class="form-check">
+                <input type="radio" id="q@i-d" name="responses[@i].SelectedAnswer" value="@question.OptionD" class="form-check-input" />
+                <label for="q@i-d" class="form-check-label">D. @question.OptionD</label>
             </div>
 
             <input type="hidden" name="responses[@i].QuestionId" value="@question.QuestionId" />
             <input type="hidden" name="responses[@i].CorrectAnswer" value="@question.CorrectOption" />
             <input type="hidden" name="QuizId" value="@question.QuizId" />
         </div>
-        <hr />
     }
 
-    <button type="submit" class="btn btn-primary">Submit Test</button>
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary btn-lg">Submit Test</button>
+    </div>
 </form>
+
+@section Scripts {
+    <script>
+        let timer; // Timer variable
+        const totalTime = 60; // Total time in seconds (10 minutes)
+        let remainingTime = totalTime;
+
+        function startTimer() {
+            timer = setInterval(() => {
+                if (remainingTime <= 0) {
+                    clearInterval(timer);
+                    alert('Time is up! Submitting your test.');
+                    document.getElementById('testForm').submit(); // Submit the form
+                } else {
+                    const minutes = Math.floor(remainingTime / 60);
+                    const seconds = remainingTime % 60;
+                    document.getElementById('time').textContent =
+                        `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                    remainingTime--;
+                }
+            }, 1000);
+        }
+
+        // Function to enter fullscreen mode
+        function enterFullscreen() {
+            const elem = document.documentElement; // Use the whole document for fullscreen
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.mozRequestFullScreen) { // Firefox
+                elem.mozRequestFullScreen();
+            } else if (elem.webkitRequestFullscreen) { // Chrome, Safari and Opera
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { // IE/Edge
+                elem.msRequestFullscreen();
+            }
+        }
+
+        // Start the timer when the document is ready
+        document.addEventListener('DOMContentLoaded', startTimer);
+
+        // Enter fullscreen on button click
+        document.getElementById('fullscreenButton').onclick = function () {
+            enterFullscreen();
+        };
+
+        // Exit fullscreen mode on form submission
+        document.getElementById('testForm').onsubmit = function () {
+            if (document.fullscreenElement) {
+                document.exitFullscreen(); // Exit fullscreen mode
+            }
+        };
+    </script>
+}

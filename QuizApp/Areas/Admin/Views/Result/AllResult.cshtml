@@ -25,10 +25,14 @@
             </tr>
         </thead>
         <tbody>
+            @{
+                //razor syntax
+                int srNo = 1;  // Initialize the serial number
+            }
             @foreach (var obj in Model)
             {
                 <tr>
-                    <td>@obj.Submission_Id</td>
+                    <td>@srNo</td>
                     <td>@obj.UserName</td>
                     <td>@obj.Topic</td>
                     <td>@obj.Quiz_Id</td>
@@ -36,6 +40,7 @@
                     <td>@obj.SubmittedAt</td>
                     <td>@obj.Result</td>
                 </tr>
+                srNo++;
             }
         </tbody>
     </table>

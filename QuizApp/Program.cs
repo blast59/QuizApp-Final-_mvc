@@ -18,7 +18,7 @@ options.UseNpgsql(builder.Configuration.GetConnectionString("WebApiDatabase")));
 
 
 
-
+//Registering Identity services 
 builder.Services.AddIdentity<IdentityUser , IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -31,7 +31,6 @@ builder.Services.AddRazorPages();
 builder.Services.AddScoped<IUnitOfWork , UnitOfWork>();
 builder.Services.AddScoped<IEmailSender , EmailSender>();
 
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -43,7 +42,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles();
+app.UseStaticFiles();    //for accessing wwwroot static files
 
 app.UseRouting();
 app.UseAuthentication();    

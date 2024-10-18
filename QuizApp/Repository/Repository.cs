@@ -26,8 +26,8 @@ namespace QuizApp.Repository
             
         }
 
-        public T Get(Expression<Func<T, bool>> filter)
-        {
+        public T Get(Expression<Func<T, bool>> filter)              //to retrieve one instance having some condition
+        { 
             IQueryable<T> query = dbSet;
             query = query.Where(filter);
             return query.FirstOrDefault();

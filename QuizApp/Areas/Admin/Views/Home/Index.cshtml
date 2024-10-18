@@ -6,23 +6,60 @@
     <h1 class="display-4">Welcome to the Quiz App!</h1>
     <p class="lead">Challenge yourself with exciting quizzes and improve your knowledge.</p>
 
-    <a href="/Admin/Quiz/Index" class="btn btn-lg btn-primary">Quiz</a>
-    <a href="/about" class="btn btn-lg btn-secondary">Learn More</a>
+    <a href="/Admin/Quiz/Index" class="btn btn-lg btn-primary mx-2">Quiz</a>
+    <a href="/about" class="btn btn-lg btn-secondary mx-2">Learn More</a>
 
     <div class="mt-5">
         <h3>User Testimonials</h3>
-        <blockquote>"This quiz app helped me ace my exams! The questions are fun and challenging!" - User A</blockquote>
+        <blockquote class="testimonial">
+            "This quiz app helped me ace my exams! The questions are fun and challenging!" - User A
+        </blockquote>
+    </div>
+
+    <h3 class="mt-5">Quote of the Day</h3>
+    <div class="quote-container">
+        <img src="/images/bruce-lee.jpg" alt="Bruce Lee" class="quote-image" />
+        <blockquote class="quote-text">
+            "Learning is never cumulative, it is a movement of knowing which has no beginning and no end." - Bruce Lee
+        </blockquote>
     </div>
 </div>
 
 <style>
-   /*  body {
-        background: linear-gradient(to right, #6a11cb, #2575fc);
-        color: white;
-    } */
+    /* Adjusting background color (optional) */
+    /* body {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+        } */
 
     .testimonial {
         margin-top: 20px;
         font-style: italic;
     }
+
+    .quote-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .quote-image {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+    }
+
+    .quote-text {
+        font-style: italic;
+        font-size: 18px;
+        max-width: 600px;
+        text-align: left;
+    }
+
+    /* Ensure buttons are spaced evenly */
+    /* .btn {
+        margin-top: 10px;
+    } */
 </style>

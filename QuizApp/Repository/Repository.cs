@@ -11,7 +11,7 @@ namespace QuizApp.Repository
     public class Repository<T> : IRepository<T>where T : class
     {
         private readonly AppDbContext _db;
-        internal DbSet<T> dbSet;
+        internal DbSet<T> dbSet ;
         public Repository(AppDbContext db)
         {
             _db = db;
@@ -25,14 +25,12 @@ namespace QuizApp.Repository
             dbSet.Add(entity);
             
         }
-
         public T Get(Expression<Func<T, bool>> filter)              //to retrieve one instance having some condition
         { 
             IQueryable<T> query = dbSet;
             query = query.Where(filter);
             return query.FirstOrDefault();
         }
-
         public IEnumerable<T> GetAll()
         {
             IQueryable<T> query = dbSet;

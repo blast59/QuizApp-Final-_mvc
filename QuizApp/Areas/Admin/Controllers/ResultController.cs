@@ -10,7 +10,7 @@ namespace QuizApp.Areas.Admin.Controllers
     [Authorize(Roles = SD.Role_Admin)]
     public class ResultController : Controller
     {
-        
+
         private readonly AppDbContext _db;
         public ResultController(AppDbContext context)
         {

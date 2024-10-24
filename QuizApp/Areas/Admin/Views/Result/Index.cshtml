@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Student Pass/Fail Chart";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center">Student Pass/Fail Pie Chart</h2>
+
+    <canvas id="pieChart" width="50" height="50"         ></canvas>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Get the data from ViewBag
+        var passCount = @ViewBag.PassCount;
+        var failCount = @ViewBag.FailCount;
+
+        // Configure the Chart.js Pie Chart
+        var ctx = document.getElementById('pieChart').getContext('2d');
+        var myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Pass', 'Fail'],
+                datasets: [{
+                    data: [passCount, failCount],  // Pass and Fail counts
+                    backgroundColor: ['#4CAF50', '#F44336'],  // Green for Pass, Red for Fail
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Pass/Fail Distribution'
+                    }
+                }
+            }
+        });
+    </script>
+}

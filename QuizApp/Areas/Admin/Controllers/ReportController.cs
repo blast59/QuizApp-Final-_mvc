@@ -16,7 +16,7 @@ namespace QuizApp.Areas.Admin.Controllers
         private readonly IUnitOfWork _unitOfWork;
         public ReportController(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = unitOfWork;
+           _unitOfWork = unitOfWork;
         }
         public IActionResult pdf()
         {
@@ -25,6 +25,5 @@ namespace QuizApp.Areas.Admin.Controllers
             byte[] abytes = questionReport.PrepareReport(obj);
             return File(abytes, "application/pdf");
         }
-
     }
 }

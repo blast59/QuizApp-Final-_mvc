@@ -18,6 +18,15 @@ namespace QuizApp.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
+            
+            IQueryable<Submission> PassFail = _db.Submission;
+            List<Submission> pass = PassFail.Where(n => n.Result == "Pass").ToList();
+            List<Submission> fail = PassFail.Where(n => n.Result == "Fail").ToList();
+            ViewBag.PassCount = pass.Count();
+            ViewBag.FailCount = fail.Count();
+
+
+
             return View();
         }
         public IActionResult AllResult() {
@@ -27,5 +36,6 @@ namespace QuizApp.Areas.Admin.Controllers
             return View(ObjQuizList);
 
         }
+
     }
 }

@@ -7,13 +7,9 @@ using QuizApp.Models;
 using System.Drawing.Text;
 
 namespace QuizApp.Report
-
 {
-
     public class QuestionReport
-
     {
-
         #region
         int _totalColumn = 7;
         Document _document;
@@ -69,9 +65,9 @@ namespace QuizApp.Report
             _pdfPCell = new PdfPCell(new Phrase("Text", _fontStyle));
             _pdfPCell.HorizontalAlignment = Element.ALIGN_LEFT;
             _pdfPCell.VerticalAlignment = Element.ALIGN_MIDDLE;
-           _pdfPCell.BackgroundColor = BaseColor.LIGHT_GRAY;
+            _pdfPCell.BackgroundColor = BaseColor.LIGHT_GRAY;
             _pdftable.AddCell(_pdfPCell);
-           _fontStyle = FontFactory.GetFont("Arial", 8f, 1);
+            _fontStyle = FontFactory.GetFont("Arial", 8f, 1);
 
             _pdfPCell = new PdfPCell(new Phrase("Option A", _fontStyle));
 

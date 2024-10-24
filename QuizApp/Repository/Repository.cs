@@ -18,14 +18,12 @@ namespace QuizApp.Repository
             this.dbSet = _db.Set<T>();  
             //_db.Quiz == dbSet
             //_db.Quiz.Add(entity) == dbSet(entity)
-
         }
         public void Add(T entity)
         {
-            dbSet.Add(entity);
-            
+            dbSet.Add(entity);           
         }
-        public T Get(Expression<Func<T, bool>> filter)              //to retrieve one instance having some condition
+        public T Get(Expression<Func<T, bool>> filter)               //to retrieve one instance having some condition
         { 
             IQueryable<T> query = dbSet;
             query = query.Where(filter);
@@ -41,7 +39,6 @@ namespace QuizApp.Repository
         {
             dbSet.Remove(entity);   
         }
-
         public void RemoveRange(IEnumerable<T> entity)
         {
             dbSet.RemoveRange(entity);  

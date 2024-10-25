@@ -53,4 +53,4 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{area=Admin}/{controller=Home}/{action=Index}/{id?}");
 
-app.Run();
+app.Run();      // basixally run the project

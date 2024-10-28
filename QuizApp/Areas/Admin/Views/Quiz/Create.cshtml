@@ -21,7 +21,7 @@
 
             <div class="row">
                 <div class="col-6 col-md-3">
-                    <button type="submit" class="btn btn-primary form-control">Create</button>
+                    <button type="submit" class="btn btn-primary form-control" onclick="return showConfirmation()">Create</button>
                 </div>
                 <div class="col-6 col-md-3 ">
                     <a asp-controller="Quiz" asp-action="Index" class="btn btn-outline-secondary form-control ">
@@ -36,6 +36,17 @@
 @*if the parial view is of js use section Scripts*@ 
 @section Scripts{  @*this validationscripts is used for client side validation*@
     @{              //razor syntax
-    <partial name="_ValidationScriptsPartial"/>              //to consume partial view with the partial tag helper 
+        <partial name="_ValidationScriptsPartial"/>              //to consume partial view with the partial tag helper 
     }
 }
+<script>
+    function showConfirmation(){
+        var result = confirm("Are you sure you want to Create?");
+        if(result)
+        {
+            return true;
+        }
+        else 
+            return false;
+    }
+</script>

@@ -46,7 +46,7 @@ namespace QuizApp.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
             return View();
-        }
+        }   
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0)

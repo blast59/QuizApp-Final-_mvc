@@ -53,10 +53,6 @@ namespace QuizApp.Areas.Participant.Controllers
             //var user = _userManager.FindByIdAsync(userId).GetAwaiter().GetResult();
             //string userName = user?.Name;
 
-
-
-
-
             // Evaluate the test
             foreach (var QuizAppResponse in Responses)
             {

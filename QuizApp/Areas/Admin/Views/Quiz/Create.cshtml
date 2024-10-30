@@ -8,20 +8,20 @@
             </div>
         </div>
     </div>
-    <form method="post">
+    
         <div class="border p-3 mt-0">
             
             <div asp-validation-summary="ModelOnly"></div>
             <div class="mb-3 row p-1">
                 <label asp-for="Topic" class="p-0"></label>
-                <input asp-for="Topic" class="form-control" />     @* //asp-for tag helper *@
+                <input id="topicname" asp-for="Topic" class="form-control" />     @* //asp-for tag helper *@
                 <span asp-validation-for="Topic" class="text-danger"></span>
 
             </div>
 
             <div class="row">
                 <div class="col-6 col-md-3">
-                    <button type="submit" class="btn btn-primary form-control" onclick="return showConfirmation()">Create</button>
+                <button id="createTopic" type="submit" onclick="createTopic()" class="btn btn-primary form-control">Create</button>
                 </div>
                 <div class="col-6 col-md-3 ">
                     <a asp-controller="Quiz" asp-action="Index" class="btn btn-outline-secondary form-control ">
@@ -30,23 +30,59 @@
                 </div>
             </div>
         </div>
-    </form>
+     
 </div>
 
 @*if the parial view is of js use section Scripts*@ 
 @section Scripts{  @*this validationscripts is used for client side validation*@
     @{              //razor syntax
-        <partial name="_ValidationScriptsPartial"/>              //to consume partial view with the partial tag helper 
+            <partial name="_ValidationScriptsPartial"/>              //to consume partial view with the partial tag helper 
     }
 }
 <script>
-    function showConfirmation(){
-        var result = confirm("Are you sure you want to Create?");
-        if(result)
-        {
-            return true;
+    //$(document).ready(function () {
+
+        function showConfirmation(){
+            var result = confirm("Are you sure you want to Create?");
+            if(result)
+            {
+                return true;
+            }
+            else 
+                return false;
         }
-        else 
-            return false;
-    }
+
+        function createTopic() {
+            debugger;
+            if (!showConfirmation()) {
+                return; // Exit if the user clicked "Cancel"
+            }
+            var topic = $('#topicname').val();
+            $.ajax({
+                url: '@Url.Action("Create", "Quiz", new { area = "Admin" })',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ Topic: topic }), // Adjust according to your Quiz model
+                success: function (data) {
+                    debugger;
+                    if (data.success) {
+                        $('#resultMessage').text(data.message).css('color', 'green');
+                        $('#topicname').val(''); // Clear the input field
+                    } else {
+                        $('#resultMessage').html(data.errors.join('<br/>')).css('color', 'red');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error:', error);
+                    $('#resultMessage').text('An error occurred while processing your request.').css('color', 'red');
+                }
+            });
+        }
+        // $('#createTopic').click(function () {
+        //     debugger;
+            
+        // });
+    //});
 </script>
+
+    

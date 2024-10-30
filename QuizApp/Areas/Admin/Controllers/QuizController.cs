@@ -31,8 +31,8 @@ namespace QuizApp.Areas.Admin.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public IActionResult Create(Quiz _obj)
+        [HttpPost]  
+        public IActionResult Create([FromBody] Quiz _obj)
         {
             if (int.TryParse(_obj.Topic, out int result))
             {
